@@ -1,0 +1,34 @@
+<div class="grid-container">
+  <h1 class="mat-h1">Dashboard</h1>
+  <mat-grid-list cols="11" rowHeight="150px">
+    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
+      <mat-card class="dashboard-card">
+
+        <mat-card-header>
+          <mat-card-title>
+            {{card.title}}
+            <span *ngIf="card.content === 'current'">
+              <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu" xPosition="before">
+                <button (click)="showPieChart = true; createPieChart()" mat-menu-item>Donut</button>
+                <button (click)="showPieChart = false;" mat-menu-item>Numeric</button>
+              </mat-menu>
+            </span>
+          </mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content class="dashboard-card-content">
+          <app-today-info *ngIf="card.content === 'current'" [showPieChart]="showPieChart"
+            [currentDayChartData]="currentDayChartData"></app-today-info>
+          <app-country *ngIf="card.content === 'table' && countryWiseData" [countryWiseData]="countryWiseData">
+          </app-country>
+          <div *ngIf="card.content === 'world_wide_case'" id="countryChart" style="width: 100%; height: 400px"></div>
+          <app-world-map *ngIf="card.content === 'map'"></app-world-map>
+          <app-historical-info *ngIf="card.content === 'world_wide_case'" [chartData]="historicalData"></app-historical-info>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
