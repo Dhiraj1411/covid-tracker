@@ -8,6 +8,7 @@ import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 import am4themes_frozen from "@amcharts/amcharts4/themes/frozen";
 
 import { AppService } from '../../app.service';
+import { FormControl } from '@angular/forms';
 
 am4core.useTheme(am4themes_frozen);
 am4core.useTheme(am4themes_animated);
@@ -41,6 +42,9 @@ export class COVIDComponent {
   currentDayChartData;
   historicalData;
   showPieChart = false;
+  showAreaChart = true;
+
+  selectedPieChart = new FormControl('numeric');
 
   constructor(
     private breakpointObserver: BreakpointObserver,

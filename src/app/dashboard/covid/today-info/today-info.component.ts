@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, NgZone } from '@angular/core';
+import { Component, OnInit, Input, NgZone, OnChanges } from '@angular/core';
 
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
@@ -15,9 +15,7 @@ am4core.useTheme(am4themes_animated);
   templateUrl: './today-info.component.html',
   styleUrls: ['./today-info.component.scss']
 })
-export class TodayInfoComponent implements OnInit {
-
-
+export class TodayInfoComponent implements OnInit, OnChanges {
   pieChart;
 
   @Input() showPieChart;
@@ -33,6 +31,14 @@ export class TodayInfoComponent implements OnInit {
   ngAfterViewInit() {
     this.zone.runOutsideAngular(() => {
     });
+  }
+
+  ngOnChanges() {
+    if (this.showPieChart) {
+      setTimeout(()=>{this.createPieChart();},500);
+    } else if (this.pieChart) {
+      this.pieChart.dispose();
+    }
   }
 
   createPieChart() {

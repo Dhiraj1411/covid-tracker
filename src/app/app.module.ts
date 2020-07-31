@@ -22,6 +22,8 @@ import { NumberFormatPipe } from './pipe/number-format.pipe';
 import { WorldMapComponent } from './dashboard/covid/world-map/world-map.component';
 import { TodayInfoComponent } from './dashboard/covid/today-info/today-info.component';
 import { HistoricalInfoComponent } from './dashboard/covid/historical-info/historical-info.component';
+import { MatSelectModule } from '@angular/material/select';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { HistoricalInfoComponent } from './dashboard/covid/historical-info/histo
     HttpClientModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatSelectModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
