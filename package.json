@@ -4,13 +4,15 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --prod --build-optimizer=false",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
+    "@amcharts/amcharts4": "^4.9.34",
+    "@amcharts/amcharts4-geodata": "^4.1.17",
     "@angular/animations": "~10.0.5",
     "@angular/cdk": "~10.1.0-next.0",
     "@angular/common": "~10.0.5",
