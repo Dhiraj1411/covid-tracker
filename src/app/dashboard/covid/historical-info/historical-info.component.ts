@@ -4,6 +4,7 @@ import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 import am4themes_frozen from "@amcharts/amcharts4/themes/frozen";
+import { FormControl } from '@angular/forms';
 
 am4core.useTheme(am4themes_frozen);
 am4core.useTheme(am4themes_animated);
@@ -15,45 +16,56 @@ am4core.useTheme(am4themes_animated);
 })
 export class HistoricalInfoComponent implements OnInit {
 
+  caseType = new FormControl("cases");
   chart;
   @Input() showAreaChart;
   @Input() chartData;
   constructor(private zone: NgZone) { }
 
   ngOnInit(): void {
+    this.caseType.valueChanges.subscribe(value => {
+      if (this.showAreaChart) {
+        const data = this.getCases(this.chartData, value);
+        this.createAreaChart(data);
+      } else {
+        const data = this.getCases(this.chartData, value);
+        this.create3DCyclinderChat(this.getCases(this.chartData, value))
+      }
+    });
   }
 
   ngAfterViewInit() {
     this.zone.runOutsideAngular(() => {
-      this.getCases(this.chartData);
+      // this.getCases(this.chartData);
     });
   }
 
   ngOnChanges() {
     if (this.chart)
       this.chart.dispose();
-      
+
     if (this.showAreaChart) {
-      this.createAreaChart();
+      const data = this.getCases(this.chartData, this.caseType.value);
+      this.createAreaChart(data);
     } else {
-      this.getCases(this.chartData);
+      const data = this.getCases(this.chartData, this.caseType.value);
+      this.create3DCyclinderChat(data);
     }
   }
 
-  getCases(resp) {
+  getCases(resp, type) {
     const result = [];
     if (resp)
-      for (const key in resp.cases) {
+      for (const key in resp[type]) {
         if (resp.cases.hasOwnProperty(key)) {
           const obj = {
-            number: resp.cases[key],
+            number: resp[type][key],
             date: key
           }
           result.push(obj);
         }
       }
-    console.log(result);
-    this.create3DCyclinderChat(result);
+    return result;
   }
 
   create3DCyclinderChat(data) {
@@ -107,29 +119,29 @@ export class HistoricalInfoComponent implements OnInit {
     this.chart = chart;
   }
 
-  createAreaChart() {
+  createAreaChart(data) {
 
     // Create chart
     let chart = am4core.create("countryChart", am4charts.XYChart);
     chart.paddingRight = 20;
 
-    chart.data = this.generateChartData();
+    chart.data = data;
 
     let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
     dateAxis.baseInterval = {
-      "timeUnit": "minute",
+      "timeUnit": "day",
       "count": 1
     };
-    dateAxis.tooltipDateFormat = "HH:mm, d MMMM";
+    // dateAxis.tooltipDateFormat = "HH:mm, d MMMM";
 
     let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
     valueAxis.tooltip.disabled = true;
-    valueAxis.title.text = "Unique visitors";
+    valueAxis.title.text = "Cases";
 
     let series = chart.series.push(new am4charts.LineSeries());
     series.dataFields.dateX = "date";
-    series.dataFields.valueY = "visits";
-    series.tooltipText = "Visits: [bold]{valueY}[/]";
+    series.dataFields.valueY = "number";
+    series.tooltipText = "number: [bold]{valueY}[/]";
     series.fillOpacity = 0.3;
 
     chart.cursor = new am4charts.XYCursor();
@@ -144,27 +156,4 @@ export class HistoricalInfoComponent implements OnInit {
     this.chart = chart;
   }
 
-  generateChartData() {
-    let chartData = [];
-    // current date
-    let firstDate = new Date();
-    // now set 500 minutes back
-    firstDate.setMinutes(firstDate.getDate() - 500);
-
-    // and generate 500 data items
-    let visits = 500;
-    for (var i = 0; i < 500; i++) {
-      let newDate = new Date(firstDate);
-      // each time we add one minute
-      newDate.setMinutes(newDate.getMinutes() + i);
-      // some random number
-      visits += Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 10);
-      // add data item to the array
-      chartData.push({
-        date: newDate,
-        visits: visits
-      });
-    }
-    return chartData;
-  }
 }

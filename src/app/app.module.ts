@@ -24,6 +24,7 @@ import { TodayInfoComponent } from './dashboard/covid/today-info/today-info.comp
 import { HistoricalInfoComponent } from './dashboard/covid/historical-info/historical-info.component';
 import { MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatPaginatorModule,
     MatSortModule,
     MatSelectModule,
+    MatButtonModule,
+    MatButtonToggleModule,
     ReactiveFormsModule
   ],
   providers: [],

@@ -1,5 +1,5 @@
 
-<div *ngIf="!showPieChart; else pieChart">
+<div *ngIf="showPieChart == 'number'">
     <div class="text_value">
         <p>Covid Cases</p>
         <h1>+ {{currentDayChartData?.todayCases | numberFormat}}</h1>
@@ -17,6 +17,6 @@
     </div>
 </div>
 
-<ng-template #pieChart>
+<div *ngIf="showPieChart == 'donut' || showPieChart == 'pie'">
     <div id="currentDayChart" style="width: 100%; height: 200px"></div>
-</ng-template>
+</div>

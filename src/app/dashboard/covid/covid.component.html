@@ -7,21 +7,16 @@
         <mat-card-header>
           <mat-card-title>
             {{card.title}}
-            <mat-form-field class="mat-dropdown" *ngIf="card.content === 'current'" class="more-button">
-              <mat-select [formControl]="selectedPieChart">
-                <mat-option (click)="showPieChart = true;" value="donut">Donut</mat-option>
-                <mat-option (click)="showPieChart = false;" value="numeric">Numeric</mat-option>
-              </mat-select>
-            </mat-form-field>
-            <!-- <span *ngIf="card.content === 'current'">
+            <span *ngIf="card.content === 'current'">
               <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
                 <mat-icon>more_vert</mat-icon>
               </button>
               <mat-menu #menu="matMenu" xPosition="before">
-                <button (click)="showPieChart = true;" mat-menu-item>Donut</button>
-                <button (click)="showPieChart = false;" mat-menu-item>Numeric</button>
+                <button (click)="showPieChart = 'pie';" mat-menu-item>Pie</button>
+                <button (click)="showPieChart = 'donut';" mat-menu-item>Donut</button>
+                <button (click)="showPieChart = 'number';" mat-menu-item>Numeric</button>
               </mat-menu>
-            </span> -->
+            </span>
             <span *ngIf="card.content === 'world_wide_case'">
               <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
                 <mat-icon>more_vert</mat-icon>

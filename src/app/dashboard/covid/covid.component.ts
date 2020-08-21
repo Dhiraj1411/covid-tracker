@@ -3,7 +3,6 @@ import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 
 import * as am4core from "@amcharts/amcharts4/core";
-import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 import am4themes_frozen from "@amcharts/amcharts4/themes/frozen";
 
@@ -41,7 +40,7 @@ export class COVIDComponent {
   countryWiseData;
   currentDayChartData;
   historicalData;
-  showPieChart = false;
+  showPieChart = 'number';
   showAreaChart = true;
 
   selectedPieChart = new FormControl('numeric');
