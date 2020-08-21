@@ -25,7 +25,7 @@ jobs:
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@releases/v2
       with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.my_github_access_token }}
       env:
         BASE_BRANCH: master
         BRANCH: gh-pages
