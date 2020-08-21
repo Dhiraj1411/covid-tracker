@@ -24,6 +24,8 @@ jobs:
          ng build --prod --build-optimizer=false --base-href="/covid-19-dashboard/"
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@releases/v2
+      with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       env:
         BASE_BRANCH: master
         BRANCH: gh-pages
