@@ -18,6 +18,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: 'Deploy covid app using action'
+      uses: ./
       with:
         run_lint: true
         github_access_token: ${{ secrets.ACCESS_TOKEN }}
