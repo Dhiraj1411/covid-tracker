@@ -21,10 +21,12 @@ jobs:
       run: |
          npm install -g @angular/cli
          npm install
-         ng build --prod --aot=false --build-optimizer=false --base-href="/covid-19-dashboard/"
+         ng build --prod --aot=false --build-optimizer=false"
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@releases/v2
       with:
-        ACCESS_TOKEN: ${{ secrets.my_github_access_token_1 }}
-        BRANCH: gh-pages
-        FOLDER: build
+        github_access_token: ${{ secrets.my_github_access_token_1 }}
+        base_href: /covid-tracker/
+        deploy_branch: gh-pages
+        build_folder: covid-tracker/dist/COVIDTracker
+        angular_project_dir: covid-tracker
