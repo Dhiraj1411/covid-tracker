@@ -10,7 +10,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: All things angular
+    - name: checked
       uses: AhsanAyaz/angular-deploy-gh-pages-actions
       with:
         github_access_token: ${{ secrets.my_github_access_token_1 }} # see the Configuration section for how you can create secrets
