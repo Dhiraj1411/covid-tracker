@@ -1,7 +1,7 @@
 {
   "configVersion": 1,
-  "timestamp": 1598114667374,
-  "index": "'https://dhiraj1411.github.io/covidtracker/'/index.html",
+  "timestamp": 1598114910346,
+  "index": "'/COVIDTracker/'/index.html",
   "assetGroups": [
     {
       "name": "app",
@@ -11,15 +11,15 @@
         "ignoreVary": true
       },
       "urls": [
-        "'https://dhiraj1411.github.io/covidtracker/'/canvg.cf3c76bff564db6aab41.js",
-        "'https://dhiraj1411.github.io/covidtracker/'/index.html",
-        "'https://dhiraj1411.github.io/covidtracker/'/main.2997e4c9c368d507e8e4.js",
-        "'https://dhiraj1411.github.io/covidtracker/'/manifest.webmanifest",
-        "'https://dhiraj1411.github.io/covidtracker/'/pdfmake.dd1dd2954ae6c669fcb9.js",
-        "'https://dhiraj1411.github.io/covidtracker/'/polyfills.d4576169df0d37d22312.js",
-        "'https://dhiraj1411.github.io/covidtracker/'/runtime.fd7f39084272bc42bedd.js",
-        "'https://dhiraj1411.github.io/covidtracker/'/styles.c80f0680ecacf487cdc3.css",
-        "'https://dhiraj1411.github.io/covidtracker/'/xlsx.043b764d2ce5e4814886.js"
+        "'/COVIDTracker/'/canvg.cf3c76bff564db6aab41.js",
+        "'/COVIDTracker/'/index.html",
+        "'/COVIDTracker/'/main.2997e4c9c368d507e8e4.js",
+        "'/COVIDTracker/'/manifest.webmanifest",
+        "'/COVIDTracker/'/pdfmake.dd1dd2954ae6c669fcb9.js",
+        "'/COVIDTracker/'/polyfills.d4576169df0d37d22312.js",
+        "'/COVIDTracker/'/runtime.fd7f39084272bc42bedd.js",
+        "'/COVIDTracker/'/styles.c80f0680ecacf487cdc3.css",
+        "'/COVIDTracker/'/xlsx.043b764d2ce5e4814886.js"
       ],
       "patterns": []
     },
@@ -31,37 +31,37 @@
         "ignoreVary": true
       },
       "urls": [
-        "'https://dhiraj1411.github.io/covidtracker/'/assets/icons/icon-128x128.png",
-        "'https://dhiraj1411.github.io/covidtracker/'/assets/icons/icon-144x144.png",
-        "'https://dhiraj1411.github.io/covidtracker/'/assets/icons/icon-152x152.png",
-        "'https://dhiraj1411.github.io/covidtracker/'/assets/icons/icon-192x192.png",
-        "'https://dhiraj1411.github.io/covidtracker/'/assets/icons/icon-384x384.png",
-        "'https://dhiraj1411.github.io/covidtracker/'/assets/icons/icon-512x512.png",
-        "'https://dhiraj1411.github.io/covidtracker/'/assets/icons/icon-72x72.png",
-        "'https://dhiraj1411.github.io/covidtracker/'/assets/icons/icon-96x96.png"
+        "'/COVIDTracker/'/assets/icons/icon-128x128.png",
+        "'/COVIDTracker/'/assets/icons/icon-144x144.png",
+        "'/COVIDTracker/'/assets/icons/icon-152x152.png",
+        "'/COVIDTracker/'/assets/icons/icon-192x192.png",
+        "'/COVIDTracker/'/assets/icons/icon-384x384.png",
+        "'/COVIDTracker/'/assets/icons/icon-512x512.png",
+        "'/COVIDTracker/'/assets/icons/icon-72x72.png",
+        "'/COVIDTracker/'/assets/icons/icon-96x96.png"
       ],
       "patterns": []
     }
   ],
   "dataGroups": [],
   "hashTable": {
-    "'https://dhiraj1411.github.io/covidtracker/'/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
-    "'https://dhiraj1411.github.io/covidtracker/'/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
-    "'https://dhiraj1411.github.io/covidtracker/'/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
-    "'https://dhiraj1411.github.io/covidtracker/'/assets/icons/icon-192x192.png": "1abd80d431a237a853ce38147d8c63752f10933b",
-    "'https://dhiraj1411.github.io/covidtracker/'/assets/icons/icon-384x384.png": "329749cd6393768d3131ed6304c136b1ca05f2fd",
-    "'https://dhiraj1411.github.io/covidtracker/'/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
-    "'https://dhiraj1411.github.io/covidtracker/'/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
-    "'https://dhiraj1411.github.io/covidtracker/'/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
-    "'https://dhiraj1411.github.io/covidtracker/'/canvg.cf3c76bff564db6aab41.js": "de4336cbee8950f36d7a17f3dbe34bca4dae8f05",
-    "'https://dhiraj1411.github.io/covidtracker/'/index.html": "a47ec5a1787a55e76272e2544373b76f3aa5de90",
-    "'https://dhiraj1411.github.io/covidtracker/'/main.2997e4c9c368d507e8e4.js": "633eaf842682786c7968602a53892ef54595ed5b",
-    "'https://dhiraj1411.github.io/covidtracker/'/manifest.webmanifest": "e54bbb2641727f6c660ae9fd9743ce7a5e244f73",
-    "'https://dhiraj1411.github.io/covidtracker/'/pdfmake.dd1dd2954ae6c669fcb9.js": "4e29de01e5a72197115b6aa6260dae0994b796cd",
-    "'https://dhiraj1411.github.io/covidtracker/'/polyfills.d4576169df0d37d22312.js": "525ff7518985cfca1fbd11f908e9be773b20063a",
-    "'https://dhiraj1411.github.io/covidtracker/'/runtime.fd7f39084272bc42bedd.js": "7ab454d9e85c8e2c4e2c06e81bae2fc3a11c0ee8",
-    "'https://dhiraj1411.github.io/covidtracker/'/styles.c80f0680ecacf487cdc3.css": "1d6c5005d4303b8f6ed8996b0dd5288b45d77613",
-    "'https://dhiraj1411.github.io/covidtracker/'/xlsx.043b764d2ce5e4814886.js": "6e6103bdc9d967d8ed39587bb4182ebc4dff78e3"
+    "'/COVIDTracker/'/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
+    "'/COVIDTracker/'/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
+    "'/COVIDTracker/'/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
+    "'/COVIDTracker/'/assets/icons/icon-192x192.png": "1abd80d431a237a853ce38147d8c63752f10933b",
+    "'/COVIDTracker/'/assets/icons/icon-384x384.png": "329749cd6393768d3131ed6304c136b1ca05f2fd",
+    "'/COVIDTracker/'/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
+    "'/COVIDTracker/'/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
+    "'/COVIDTracker/'/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
+    "'/COVIDTracker/'/canvg.cf3c76bff564db6aab41.js": "de4336cbee8950f36d7a17f3dbe34bca4dae8f05",
+    "'/COVIDTracker/'/index.html": "1916fb57b792f1372c5fa3634e28e94998ffbddf",
+    "'/COVIDTracker/'/main.2997e4c9c368d507e8e4.js": "633eaf842682786c7968602a53892ef54595ed5b",
+    "'/COVIDTracker/'/manifest.webmanifest": "e54bbb2641727f6c660ae9fd9743ce7a5e244f73",
+    "'/COVIDTracker/'/pdfmake.dd1dd2954ae6c669fcb9.js": "4e29de01e5a72197115b6aa6260dae0994b796cd",
+    "'/COVIDTracker/'/polyfills.d4576169df0d37d22312.js": "525ff7518985cfca1fbd11f908e9be773b20063a",
+    "'/COVIDTracker/'/runtime.fd7f39084272bc42bedd.js": "7ab454d9e85c8e2c4e2c06e81bae2fc3a11c0ee8",
+    "'/COVIDTracker/'/styles.c80f0680ecacf487cdc3.css": "1d6c5005d4303b8f6ed8996b0dd5288b45d77613",
+    "'/COVIDTracker/'/xlsx.043b764d2ce5e4814886.js": "6e6103bdc9d967d8ed39587bb4182ebc4dff78e3"
   },
   "navigationUrls": [
     {
