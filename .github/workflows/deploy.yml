@@ -1,20 +1,31 @@
-name: Build and Deploy
+name: Deploy to GitHub Pages
+
 on:
-  push:
-    branches:
+  push: 
+    branches:   
       - master
+
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
-    - name: Angular Deploy gh-pages Actions
-      uses: AhsanAyaz/angular-deploy-gh-pages-actions@v1.3.1
+    - name: Checkout
+      uses: actions/checkout@v2 # If you're using actions/checkout@v2 you must set persist-credentials to false in most cases for the deployment to work correctly.
       with:
-        github_access_token: ${{ secrets.my_github_access_token_1 }} # see the Configuration section for how you can create secrets
-       # build_configuration: production # The build environment for the app. please look configurations in your angular.json
-        base_href: /covid-19-dashboard/   # make sure this corresponds to https://<your_username>.github.io/<base_href>/
-        deploy_branch: gh-pages # The branch the action should deploy to.
-        angular_dist_build_folder: dist/covid-tracker # The folder where your project is supposed to be after running ng build by the action.
+        persist-credentials: false
+    - name: Use Node.js 10.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    - name: Build
+      run: |
+         npm install -g @angular/cli
+         npm install
+         ng build --prod --aot=false --build-optimizer=false --base-href="/covid-19-dashboard/"
+    - name: Deploy
+      uses: JamesIves/github-pages-deploy-action@releases/v2
+      env:
+        ACCESS_TOKEN: ${{ secrets.my_github_access_token_1 }}
+        BASE_BRANCH: master
+        BRANCH: gh-pages
+        FOLDER: dist/COVIDTracker
