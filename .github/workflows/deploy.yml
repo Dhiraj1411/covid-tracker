@@ -1,32 +1,29 @@
-name: Deploy to GitHub Pages
-
-on:
-  push: 
-    branches:   
+name: "build-test"
+on: # rebuild any PRs and main branch changes
+  pull_request:
+  push:
+    branches:
       - master
+      - 'releases/*'
 
 jobs:
-  build:
+  build_and_test_action: # make sure build/ci work properly
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2 # If you're using actions/checkout@v2 you must set persist-credentials to false in most cases for the deployment to work correctly.
+    - uses: actions/checkout@v1
+    - run: |
+        npm install
+  test_action_and_deploy_demo: # make sure the action works on a clean machine without building
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: 'Deploy covid app using action'
+      uses: ./
       with:
-        persist-credentials: false
-    - name: Use Node.js 10.x
-      uses: actions/setup-node@v1
-      with:
-        node-version: '10.x'
-    - name: Build
-      run: |
-         npm install -g @angular/cli
-         npm install
-         ng build --prod --aot=false --build-optimizer=false
-    - name: Deploy
-      uses: JamesIves/github-pages-deploy-action@releases/v2
-      with:
+        run_lint: true
         github_access_token: ${{ secrets.ACCESS_TOKEN }}
+        build_configuration: production # The branch the action should deploy from.
         base_href: /covid-tracker/
-        deploy_branch: gh-pages
-        build_folder: covid-tracker/dist/COVIDTracker
+        deploy_branch: gh-pages # The branch the action should deploy to.
+        angular_dist_build_folder: covid-tracker/dist/COVIDTracker # The folder the action should deploy.
         angular_project_dir: covid-tracker
