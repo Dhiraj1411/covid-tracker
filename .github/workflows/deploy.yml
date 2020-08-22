@@ -21,7 +21,7 @@ jobs:
       run: |
          npm install -g @angular/cli
          npm install
-         ng build --prod --aot=false --build-optimizer=false"
+         ng build --prod --aot=false --build-optimizer=false
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@releases/v2
       with:
