@@ -4,12 +4,13 @@ on:
     branches:
       - master
 jobs:
+
   build_the_project: # make sure build/ci work properly
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
     - run: |
-        npm install:
+        npm install
      
   build_and_deploy:
 
