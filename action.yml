@@ -11,7 +11,7 @@ inputs:
     required: true
   angular_project_dir:
     description: "The directory of the angular project, in which all the commands will run"
-    default: ""
+    default: "./"
   build_configuration:
     description: "Build configuration for the angular app"
     default: "production"

@@ -43,6 +43,16 @@ export class TodayInfoComponent implements OnInit, OnChanges {
     }
   }
 
+  am4themes_myTheme_lineChart(target) {
+    if (target instanceof am4core.ColorSet) {
+      target.list = [
+        am4core.color("#232555"), // blue
+        am4core.color("#22dc22"), // green
+        am4core.color("#DF3520"), // red
+      ];
+    }
+  }
+
   createPieChart(userChartType) {
 
     const data = [
@@ -59,7 +69,7 @@ export class TodayInfoComponent implements OnInit, OnChanges {
         number: this.currentDayChartData['todayDeaths']
       }
     ];
-
+    // am4core.useTheme(this.am4themes_myTheme_lineChart);
     let chart = am4core.create("currentDayChart", am4charts.PieChart);
     let total = 0;
     chart.data = data;

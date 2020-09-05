@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
+import { array } from '@amcharts/amcharts4/core';
 
 // TODO: Replace this with your own data model type
 export interface CountryItem {
@@ -78,7 +79,7 @@ export class CountryDataSource extends DataSource<CountryItem> {
    *  Called when the table is being destroyed. Use this function, to clean up
    * any open connections or free any held resources that were set up during connect.
    */
-  disconnect() {}
+  disconnect() { }
 
   /**
    * Paginate the data (client-side). If you're using server-side pagination,
@@ -108,6 +109,10 @@ export class CountryDataSource extends DataSource<CountryItem> {
         default: return 0;
       }
     });
+  }
+
+  getFilterData(value): CountryItem[] {
+    return this.data.filter(item => item.country.includes(value));
   }
 }
 

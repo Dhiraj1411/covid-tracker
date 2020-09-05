@@ -1,4 +1,11 @@
-<div style="border: 1px solid whitesmoke; height: 650px;overflow: auto;">
+<mat-form-field style="width: 95%;">
+  <mat-label>Search Country</mat-label>
+  <input matInput type="text" [formControl]="searchCountry">
+  <button mat-button *ngIf="searchCountry.value" matSuffix mat-icon-button aria-label="Clear" (click)="searchCountry.setValue('')">
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-form-field>
+<div style="border: 1px solid whitesmoke; height: 600px;overflow: auto;">
   <table mat-table class="full-width-table" matSort aria-label="Elements">
     <!-- Id Column -->
     <ng-container matColumnDef="country">
@@ -34,10 +41,7 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 
-  <mat-paginator #paginator
-      [length]="dataSource?.data?.length"
-      [pageIndex]="0"
-      [pageSize]="10"
-      [pageSizeOptions]="[10, 20, 50]">
+  <mat-paginator #paginator [length]="dataSource?.data?.length" [pageIndex]="0" [pageSize]="10"
+    [pageSizeOptions]="[10, 20, 50]">
   </mat-paginator>
 </div>

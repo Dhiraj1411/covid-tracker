@@ -28,6 +28,14 @@ export class HistoricalInfoComponent implements OnInit {
         const data = this.getCases(this.chartData, value);
         this.createAreaChart(data);
       } else {
+        this.chart.dispose();
+        // if (this.caseType.value === 'recovered') {
+        //   am4core.useTheme(this.am4themes_myTheme_green);
+        // } else if (this.caseType.value === 'cases') {
+        //   am4core.useTheme(this.am4themes_myTheme_blue);
+        // } else {
+        //   am4core.useTheme(this.am4themes_myTheme_red);
+        // }
         const data = this.getCases(this.chartData, value);
         this.create3DCyclinderChat(this.getCases(this.chartData, value))
       }
@@ -45,9 +53,17 @@ export class HistoricalInfoComponent implements OnInit {
       this.chart.dispose();
 
     if (this.showAreaChart) {
-      const data = this.getCases(this.chartData, this.caseType.value);
+      // const data = this.getCases(this.chartData, this.caseType.value);
+      const data = this.getAllCases(this.chartData);
       this.createAreaChart(data);
     } else {
+      // if (this.caseType.value === 'recovered') {
+      //   am4core.useTheme(this.am4themes_myTheme_green);
+      // } else if (this.caseType.value === 'cases') {
+      //   am4core.useTheme(this.am4themes_myTheme_blue);
+      // } else {
+      //   am4core.useTheme(this.am4themes_myTheme_red);
+      // }
       const data = this.getCases(this.chartData, this.caseType.value);
       this.create3DCyclinderChat(data);
     }
@@ -68,10 +84,26 @@ export class HistoricalInfoComponent implements OnInit {
     return result;
   }
 
+  getAllCases(resp) {
+    const result = [];
+    if (resp) {
+      for (const key in resp['cases']) {
+        const obj = {
+          cases: resp['cases'][key],
+          recovered: resp['recovered'][key],
+          deaths: resp['deaths'][key],
+          date: key
+        }
+        result.push(obj);
+      }
+    }
+    return result;
+  }
+
   create3DCyclinderChat(data) {
 
     let chart = am4core.create("countryChart", am4charts.XYChart3D);
-    // ... chart code goes here ...      
+    // ... chart code goes here ... 
 
     // Create axes
     var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
@@ -119,12 +151,43 @@ export class HistoricalInfoComponent implements OnInit {
     this.chart = chart;
   }
 
-  createAreaChart(data) {
+  am4themes_myTheme_green(target) {
+    if (target instanceof am4core.ColorSet) {
+      target.list = [
+        am4core.color("#22dc22")
+      ];
+    }
+  }
+  am4themes_myTheme_blue(target) {
+    if (target instanceof am4core.ColorSet) {
+      target.list = [
+        am4core.color("#232555")
+      ];
+    }
+  }
+  am4themes_myTheme_red(target) {
+    if (target instanceof am4core.ColorSet) {
+      target.list = [
+        am4core.color("#DF3520")
+      ];
+    }
+  }
+  am4themes_myTheme_lineChart(target) {
+    if (target instanceof am4core.ColorSet) {
+      target.list = [
+        am4core.color("#232555"),
+        am4core.color("#DF3520"),
+        am4core.color("#22dc22"),
+      ];
+    }
+  }
 
+  createAreaChart(data) {
     // Create chart
+
     let chart = am4core.create("countryChart", am4charts.XYChart);
     chart.paddingRight = 20;
-
+    chart.colors.step = 2;
     chart.data = data;
 
     let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
@@ -136,24 +199,39 @@ export class HistoricalInfoComponent implements OnInit {
 
     let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
     valueAxis.tooltip.disabled = true;
-    valueAxis.title.text = "Cases";
+    valueAxis.title.text = "Count";
 
-    let series = chart.series.push(new am4charts.LineSeries());
-    series.dataFields.dateX = "date";
-    series.dataFields.valueY = "number";
-    series.tooltipText = "number: [bold]{valueY}[/]";
-    series.fillOpacity = 0.3;
+    this.createAxisAndSeries(chart, 'cases', '#232555');
+    this.createAxisAndSeries(chart, 'recovered', '#22dc22');
 
+    this.createAxisAndSeries(chart, 'deaths', '#DF3520');
+
+    // Add legend
+    chart.legend = new am4charts.Legend();
+
+    // Add cursor
     chart.cursor = new am4charts.XYCursor();
-    chart.cursor.lineY.opacity = 0;
-    chart.scrollbarX = new am4charts.XYChartScrollbar();
-    chart.scrollbarX['series'].push(series);
-
 
     dateAxis.start = 0.8;
     dateAxis.keepSelection = true;
 
     this.chart = chart;
+  }
+
+  createAxisAndSeries(chart, field, strokeColor) {
+
+    var series = chart.series.push(new am4charts.LineSeries());
+    series.dataFields.valueY = field;
+    series.dataFields.dateX = "date";
+    series.strokeWidth = 2;
+    series.name = field;
+    series.stroke = strokeColor;
+    series.tooltipText = `${field}: [bold]{valueY}[/]`;
+
+    chart.cursor = new am4charts.XYCursor();
+    chart.cursor.lineY.opacity = 0;
+    chart.scrollbarX = new am4charts.XYChartScrollbar();
+    chart.scrollbarX['series'].push(series);
   }
 
 }
