@@ -4,7 +4,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+<<<<<<< HEAD
     "build": "ng build --prod --aot=false --buildOptimizer=false --base-href",
+=======
+    "build": "ng build",
+>>>>>>> 95e1129df26dbee086bca875c19d3db5c7843cc8
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

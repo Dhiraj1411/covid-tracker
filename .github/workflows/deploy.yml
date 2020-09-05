@@ -1,29 +1,28 @@
-name: "build-test"
-on: # rebuild any PRs and main branch changes
-  pull_request:
+name: Build and Deploy
+on:
   push:
     branches:
       - master
-      - 'releases/*'
-
 jobs:
-  build_and_test_action: # make sure build/ci work properly
+
+  build_the_project: # make sure build/ci work properly
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
     - run: |
         npm install
-  test_action_and_deploy_demo: # make sure the action works on a clean machine without building
+     
+  build_and_deploy:
+
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v1
-    - name: 'Deploy covid app using action'
-      uses: 
+    - uses: actions/checkout@v2
+    - name: Angular Deploy gh-pages Actions
+      uses: AhsanAyaz/angular-deploy-gh-pages-actions@v1.3.1
       with:
-        run_lint: true
-        github_access_token: ${{ secrets.ACCESS_TOKEN }}
-        build_configuration: production # The branch the action should deploy from.
-        base_href: /covid-tracker/
+        github_access_token: ${{ secrets.ACCESS_TOKEN }} # see the Configuration section for how you can create secrets
+        build_configuration: production # The build environment for the app. please look configurations in your angular.json
+        base_href: /COVIDTracker/   # make sure this corresponds to https://<your_username>.github.io/<base_href>/
         deploy_branch: gh-pages # The branch the action should deploy to.
-        angular_dist_build_folder: covid-tracker/dist/COVIDTracker # The folder the action should deploy.
-        angular_project_dir: covid-tracker
+        angular_dist_build_folder: dist/COVIDTracker # The folder where your project is supposed to be after running ng build by the action.
