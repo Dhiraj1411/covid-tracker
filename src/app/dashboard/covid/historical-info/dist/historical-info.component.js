@@ -46,11 +46,11 @@ var HistoricalInfoComponent = /** @class */ (function () {
             }
         ];
         this.caseType = new forms_1.FormControl("cases");
-        this.lastDays = new forms_1.FormControl("30");
+        this.lastDays = new forms_1.FormControl("7");
     }
     HistoricalInfoComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.getHistoricalData(30);
+        this.getHistoricalData(7);
         this.caseType.valueChanges.subscribe(function (value) {
             if (_this.showAreaChart) {
                 var data = _this.getCases(_this.chartData, value);
@@ -123,8 +123,8 @@ var HistoricalInfoComponent = /** @class */ (function () {
             for (var key in resp['cases']) {
                 var obj = {
                     cases: resp['cases'][key],
-                    recovered: resp['recovered'][key],
                     deaths: resp['deaths'][key],
+                    recovered: resp['recovered'][key],
                     date: key
                 };
                 result.push(obj);

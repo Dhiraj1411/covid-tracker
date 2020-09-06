@@ -22,17 +22,17 @@ export class COVIDComponent {
     map(({ matches }) => {
       if (matches) {
         return [
-          { title: 'Today:', cols: 11, rows: 2, content: 'current' },
+          { title: 'Today (Worldwide)', cols: 11, rows: 2, content: 'current' },
           { title: 'Countries', cols: 11, rows: 5, content: 'table' },
-          { title: 'World Wise Cases:', cols: 11, rows: 4, content: 'world_wide_case' },
+          { title: 'Worldwide info', cols: 11, rows: 4, content: 'world_wide_case' },
           { title: 'World Map', cols: 11, rows: 3, content: 'map' },
         ];
       }
       return [
-        { title: 'Today:', cols: 7, rows: 2, content: 'current' },
+        { title: 'Today (Worldwide)', cols: 7, rows: 2, content: 'current' },
         { title: 'Countries', cols: 4, rows: 5, content: 'table' },
         { title: 'World Map', cols: 7, rows: 3, content: 'map' },
-        { title: 'World Wise Cases:', cols: 11, rows: 4, content: 'world_wide_case' },
+        { title: 'Worldwide info', cols: 11, rows: 4, content: 'world_wide_case' },
       ];
     })
   );
@@ -40,8 +40,8 @@ export class COVIDComponent {
   countryWiseData;
   currentDayChartData;
   historicalData;
-  showPieChart = 'number';
-  showAreaChart = true;
+  showPieChart = 'pie';
+  showAreaChart = false;
 
   selectedPieChart = new FormControl('numeric');
 

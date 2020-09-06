@@ -31,7 +31,7 @@ export class CountryComponent implements AfterViewInit, OnInit {
     // this.dataSource.data = this.countryWiseData;
     this.searchCountry.valueChanges.pipe(debounceTime(1000)).subscribe(value => {
       const data = this.countryWiseData.filter(item => {
-        return item.country.toString().includes(value);
+        return item.country.toLowerCase().includes(value.toLowerCase());
       });
       const countryDataSource = new CountryDataSource(data);
       countryDataSource.paginator = this.paginator;

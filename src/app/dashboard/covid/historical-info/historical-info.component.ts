@@ -47,7 +47,7 @@ days = [
   chart;
   @Input() showAreaChart;
   chartData;
-  lastDays = new FormControl("30");
+  lastDays = new FormControl("7");
   
   constructor(
     private zone: NgZone,
@@ -55,7 +55,7 @@ days = [
   ) { }
 
   ngOnInit(): void {
-    this.getHistoricalData(30);
+    this.getHistoricalData(7);
     this.caseType.valueChanges.subscribe(value => {
       if (this.showAreaChart) {
         const data = this.getCases(this.chartData, value);
@@ -135,8 +135,8 @@ days = [
       for (const key in resp['cases']) {
         const obj = {
           cases: resp['cases'][key],
-          recovered: resp['recovered'][key],
           deaths: resp['deaths'][key],
+          recovered: resp['recovered'][key],
           date: key
         }
         result.push(obj);

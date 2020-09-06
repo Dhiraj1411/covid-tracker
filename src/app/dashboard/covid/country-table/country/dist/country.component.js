@@ -27,7 +27,7 @@ var CountryComponent = /** @class */ (function () {
         // this.dataSource.data = this.countryWiseData;
         this.searchCountry.valueChanges.pipe(operators_1.debounceTime(1000)).subscribe(function (value) {
             var data = _this.countryWiseData.filter(function (item) {
-                return item.country.toString().includes(value);
+                return item.country.toLowerCase().includes(value.toLowerCase());
             });
             var countryDataSource = new country_datasource_1.CountryDataSource(data);
             countryDataSource.paginator = _this.paginator;
