@@ -16,12 +16,41 @@ var forms_1 = require("@angular/forms");
 am4core.useTheme(frozen_1["default"]);
 am4core.useTheme(animated_1["default"]);
 var HistoricalInfoComponent = /** @class */ (function () {
-    function HistoricalInfoComponent(zone) {
+    function HistoricalInfoComponent(zone, appService) {
         this.zone = zone;
+        this.appService = appService;
+        this.days = [
+            {
+                value: '7',
+                label: '1 Week'
+            },
+            {
+                value: '30',
+                label: '1 Month'
+            },
+            {
+                value: '60',
+                label: '2 Month'
+            },
+            {
+                value: '90',
+                label: '3 Month'
+            },
+            {
+                value: '180',
+                label: '6 Month'
+            },
+            {
+                value: '365',
+                label: '1 Year'
+            }
+        ];
         this.caseType = new forms_1.FormControl("cases");
+        this.lastDays = new forms_1.FormControl("30");
     }
     HistoricalInfoComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.getHistoricalData(30);
         this.caseType.valueChanges.subscribe(function (value) {
             if (_this.showAreaChart) {
                 var data = _this.getCases(_this.chartData, value);
@@ -31,15 +60,28 @@ var HistoricalInfoComponent = /** @class */ (function () {
                 _this.callCreate3DCyclinderChat(value);
             }
         });
+        this.lastDays.valueChanges.subscribe(function (value) {
+            _this.getHistoricalData(value);
+        });
     };
     HistoricalInfoComponent.prototype.ngAfterViewInit = function () {
         this.zone.runOutsideAngular(function () {
             // this.getCases(this.chartData);
         });
     };
+    HistoricalInfoComponent.prototype.getHistoricalData = function (days) {
+        var _this = this;
+        this.appService.getHistoricalData(days).subscribe(function (resp) {
+            _this.chartData = resp;
+            _this.createChart();
+        });
+    };
     HistoricalInfoComponent.prototype.ngOnChanges = function () {
         if (this.chart)
             this.chart.dispose();
+        this.createChart();
+    };
+    HistoricalInfoComponent.prototype.createChart = function () {
         if (this.showAreaChart) {
             var data = this.getAllCases(this.chartData);
             this.createAreaChart(data);
@@ -174,9 +216,6 @@ var HistoricalInfoComponent = /** @class */ (function () {
     __decorate([
         core_1.Input()
     ], HistoricalInfoComponent.prototype, "showAreaChart");
-    __decorate([
-        core_1.Input()
-    ], HistoricalInfoComponent.prototype, "chartData");
     HistoricalInfoComponent = __decorate([
         core_1.Component({
             selector: 'app-historical-info',

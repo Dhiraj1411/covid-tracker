@@ -8,8 +8,8 @@ export class AppService {
 
   constructor(private http: HttpClient) { }
 
-  getHistoricalData() {
-    return this.http.get('https://disease.sh/v3/covid-19/historical/all?lastdays=30');
+  getHistoricalData(days) {
+    return this.http.get('https://disease.sh/v3/covid-19/historical/all?lastdays='+days);
   }
 
   getCurrentDayData() {

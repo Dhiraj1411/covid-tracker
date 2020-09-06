@@ -35,8 +35,7 @@
           <app-country *ngIf="card.content === 'table' && countryWiseData" [countryWiseData]="countryWiseData">
           </app-country>
           <div *ngIf="card.content === 'world_wide_case'" id="countryChart" style="width: 100%; height: 400px"></div>
-          <app-historical-info *ngIf="card.content === 'world_wide_case'" [showAreaChart]="showAreaChart"
-            [chartData]="historicalData">
+          <app-historical-info *ngIf="card.content === 'world_wide_case'" [showAreaChart]="showAreaChart">
           </app-historical-info>
           <app-world-map *ngIf="card.content === 'map'"></app-world-map>
         </mat-card-content>

@@ -6,6 +6,8 @@ import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 import am4themes_frozen from "@amcharts/amcharts4/themes/frozen";
 import { FormControl } from '@angular/forms';
 
+import { AppService } from '../../../app.service';
+
 am4core.useTheme(am4themes_frozen);
 am4core.useTheme(am4themes_animated);
 
@@ -15,14 +17,45 @@ am4core.useTheme(am4themes_animated);
   styleUrls: ['./historical-info.component.scss']
 })
 export class HistoricalInfoComponent implements OnInit {
-
+days = [
+    {
+      value: '7',
+      label: '1 Week'
+    },
+    {
+      value: '30',
+      label: '1 Month'
+    },
+    {
+      value: '60',
+      label: '2 Month'
+    },
+    {
+      value: '90',
+      label: '3 Month'
+    },
+    {
+      value: '180',
+      label: '6 Month'
+    },
+    {
+      value: '365',
+      label: '1 Year'
+    }
+  ];
   caseType = new FormControl("cases");
   chart;
   @Input() showAreaChart;
-  @Input() chartData;
-  constructor(private zone: NgZone) { }
+  chartData;
+  lastDays = new FormControl("30");
+  
+  constructor(
+    private zone: NgZone,
+    private appService: AppService
+  ) { }
 
   ngOnInit(): void {
+    this.getHistoricalData(30);
     this.caseType.valueChanges.subscribe(value => {
       if (this.showAreaChart) {
         const data = this.getCases(this.chartData, value);
@@ -30,6 +63,10 @@ export class HistoricalInfoComponent implements OnInit {
       } else {
         this.callCreate3DCyclinderChat(value);
       }
+    });
+
+    this.lastDays.valueChanges.subscribe(value => {
+      this.getHistoricalData(value);
     });
   }
 
@@ -39,10 +76,23 @@ export class HistoricalInfoComponent implements OnInit {
     });
   }
 
+  getHistoricalData(days) {
+    this.appService.getHistoricalData(days).subscribe(
+      (resp) => {
+        this.chartData = resp;
+        this.createChart();
+      }
+    );
+  }
+
   ngOnChanges() {
     if (this.chart)
       this.chart.dispose();
 
+    this.createChart();
+  }
+
+  createChart() {
     if (this.showAreaChart) {
       const data = this.getAllCases(this.chartData);
       this.createAreaChart(data);
@@ -54,7 +104,7 @@ export class HistoricalInfoComponent implements OnInit {
   callCreate3DCyclinderChat(value) {
     if (this.chart)
       this.chart.dispose();
-      
+
     if (this.caseType.value === 'recovered') {
       this.create3DCyclinderChat(this.getCases(this.chartData, value), am4core.color("#22dc22"));
     } else if (this.caseType.value === 'cases') {

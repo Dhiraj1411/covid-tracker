@@ -5,4 +5,12 @@
         <mat-button-toggle value="deaths">Death</mat-button-toggle>
     </mat-button-toggle-group>
 </div>
-<div id="countryChart"></div>
+<div class="day-selector">
+    <mat-form-field appearance="fill">
+        <mat-label>Days</mat-label>
+        <mat-select [formControl]="lastDays">
+          <mat-option *ngFor="let item of days" [value]="item.value">{{item.label}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+</div>
+<div id="historicalChart"></div>

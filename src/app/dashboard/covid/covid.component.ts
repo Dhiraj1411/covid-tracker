@@ -60,12 +60,6 @@ export class COVIDComponent {
       }
     );
 
-    this.appService.getHistoricalData().subscribe(
-      (resp) => {
-        this.historicalData = resp;
-      }
-    );
-
     this.appService.getCountryWiseData().subscribe(
       resp => {
         this.countryWiseData = resp;
