@@ -6,7 +6,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-Checkout this application on github pages: (http://localhost:4200/)
+Checkout this application on github pages: (https://dhiraj1411.github.io/covid-tracker/). If it doesn't open in first go please refresh the pages couple of times.
 
 ## Code scaffolding
 
