@@ -1,7 +1,7 @@
 {
   "configVersion": 1,
-  "timestamp": 1599376807981,
-  "index": "/COVIDTracker/index.html",
+  "timestamp": 1599378664606,
+  "index": "/index.html",
   "assetGroups": [
     {
       "name": "app",
@@ -11,15 +11,15 @@
         "ignoreVary": true
       },
       "urls": [
-        "/COVIDTracker/canvg.7f22aeb3263194905e4e.js",
-        "/COVIDTracker/index.html",
-        "/COVIDTracker/main.a36ac4dd7ec22663555f.js",
-        "/COVIDTracker/manifest.webmanifest",
-        "/COVIDTracker/pdfmake.50b3d5e22b77e93a427d.js",
-        "/COVIDTracker/polyfills.dbd6677c651a2d78e857.js",
-        "/COVIDTracker/runtime.cd65d098c67f82d1edf3.js",
-        "/COVIDTracker/styles.c80f0680ecacf487cdc3.css",
-        "/COVIDTracker/xlsx.f405388b4db689d6774c.js"
+        "/canvg.cf3c76bff564db6aab41.js",
+        "/index.html",
+        "/main.dbd21651d07b97cb3468.js",
+        "/manifest.webmanifest",
+        "/pdfmake.dd1dd2954ae6c669fcb9.js",
+        "/polyfills.d4576169df0d37d22312.js",
+        "/runtime.fd7f39084272bc42bedd.js",
+        "/styles.c80f0680ecacf487cdc3.css",
+        "/xlsx.043b764d2ce5e4814886.js"
       ],
       "patterns": []
     },
@@ -31,37 +31,37 @@
         "ignoreVary": true
       },
       "urls": [
-        "/COVIDTracker/assets/icons/icon-128x128.png",
-        "/COVIDTracker/assets/icons/icon-144x144.png",
-        "/COVIDTracker/assets/icons/icon-152x152.png",
-        "/COVIDTracker/assets/icons/icon-192x192.png",
-        "/COVIDTracker/assets/icons/icon-384x384.png",
-        "/COVIDTracker/assets/icons/icon-512x512.png",
-        "/COVIDTracker/assets/icons/icon-72x72.png",
-        "/COVIDTracker/assets/icons/icon-96x96.png"
+        "/assets/icons/icon-128x128.png",
+        "/assets/icons/icon-144x144.png",
+        "/assets/icons/icon-152x152.png",
+        "/assets/icons/icon-192x192.png",
+        "/assets/icons/icon-384x384.png",
+        "/assets/icons/icon-512x512.png",
+        "/assets/icons/icon-72x72.png",
+        "/assets/icons/icon-96x96.png"
       ],
       "patterns": []
     }
   ],
   "dataGroups": [],
   "hashTable": {
-    "/COVIDTracker/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
-    "/COVIDTracker/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
-    "/COVIDTracker/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
-    "/COVIDTracker/assets/icons/icon-192x192.png": "1abd80d431a237a853ce38147d8c63752f10933b",
-    "/COVIDTracker/assets/icons/icon-384x384.png": "329749cd6393768d3131ed6304c136b1ca05f2fd",
-    "/COVIDTracker/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
-    "/COVIDTracker/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
-    "/COVIDTracker/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
-    "/COVIDTracker/canvg.7f22aeb3263194905e4e.js": "286565db57a3dce9a4174e4fd0182636cc48a8bc",
-    "/COVIDTracker/index.html": "fc11f3adc01bca07a6964677805e247338b21d72",
-    "/COVIDTracker/main.a36ac4dd7ec22663555f.js": "e41a1d6a7f3eee28ac56a0e47f8d84fb07cc1e35",
-    "/COVIDTracker/manifest.webmanifest": "1251638b0e1e85f48fe41148381afcedb4f690c4",
-    "/COVIDTracker/pdfmake.50b3d5e22b77e93a427d.js": "f8782dea19d2c9f7ee70a19d54a66d3ec27bfdcb",
-    "/COVIDTracker/polyfills.dbd6677c651a2d78e857.js": "8067cc422567347ce6eec5c44ba94128683b96db",
-    "/COVIDTracker/runtime.cd65d098c67f82d1edf3.js": "c1445f3575acc4fd2a70a617a8c11e517cf4c7e3",
-    "/COVIDTracker/styles.c80f0680ecacf487cdc3.css": "1d6c5005d4303b8f6ed8996b0dd5288b45d77613",
-    "/COVIDTracker/xlsx.f405388b4db689d6774c.js": "ffcc7c6b0a12b0e96418f8b4d9fe9421a320f592"
+    "/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
+    "/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
+    "/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
+    "/assets/icons/icon-192x192.png": "1abd80d431a237a853ce38147d8c63752f10933b",
+    "/assets/icons/icon-384x384.png": "329749cd6393768d3131ed6304c136b1ca05f2fd",
+    "/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
+    "/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
+    "/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
+    "/canvg.cf3c76bff564db6aab41.js": "de4336cbee8950f36d7a17f3dbe34bca4dae8f05",
+    "/index.html": "6e445bee98440407b1af44c314ff95da2b74ffd9",
+    "/main.dbd21651d07b97cb3468.js": "8d3a5de7c4ba4af6e68a89552ba06b52b5610724",
+    "/manifest.webmanifest": "e54bbb2641727f6c660ae9fd9743ce7a5e244f73",
+    "/pdfmake.dd1dd2954ae6c669fcb9.js": "4e29de01e5a72197115b6aa6260dae0994b796cd",
+    "/polyfills.d4576169df0d37d22312.js": "525ff7518985cfca1fbd11f908e9be773b20063a",
+    "/runtime.fd7f39084272bc42bedd.js": "7ab454d9e85c8e2c4e2c06e81bae2fc3a11c0ee8",
+    "/styles.c80f0680ecacf487cdc3.css": "1d6c5005d4303b8f6ed8996b0dd5288b45d77613",
+    "/xlsx.043b764d2ce5e4814886.js": "6e6103bdc9d967d8ed39587bb4182ebc4dff78e3"
   },
   "navigationUrls": [
     {
