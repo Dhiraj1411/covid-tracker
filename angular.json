@@ -49,7 +49,7 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "aot":true,
+              "aot": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -127,6 +127,10 @@
               "devServerTarget": "COVIDTracker:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {}
         }
       }
     }

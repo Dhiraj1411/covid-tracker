@@ -28,8 +28,7 @@ var HistoricalInfoComponent = /** @class */ (function () {
                 _this.createAreaChart(data);
             }
             else {
-                var data = _this.getCases(_this.chartData, value);
-                _this.create3DCyclinderChat(_this.getCases(_this.chartData, value));
+                _this.callCreate3DCyclinderChat(value);
             }
         });
     };
@@ -42,13 +41,24 @@ var HistoricalInfoComponent = /** @class */ (function () {
         if (this.chart)
             this.chart.dispose();
         if (this.showAreaChart) {
-            // const data = this.getCases(this.chartData, this.caseType.value);
             var data = this.getAllCases(this.chartData);
             this.createAreaChart(data);
         }
         else {
-            var data = this.getCases(this.chartData, this.caseType.value);
-            this.create3DCyclinderChat(data);
+            this.callCreate3DCyclinderChat(this.caseType.value);
+        }
+    };
+    HistoricalInfoComponent.prototype.callCreate3DCyclinderChat = function (value) {
+        if (this.chart)
+            this.chart.dispose();
+        if (this.caseType.value === 'recovered') {
+            this.create3DCyclinderChat(this.getCases(this.chartData, value), am4core.color("#22dc22"));
+        }
+        else if (this.caseType.value === 'cases') {
+            this.create3DCyclinderChat(this.getCases(this.chartData, value), am4core.color("#232555"));
+        }
+        else if (this.caseType.value === 'deaths') {
+            this.create3DCyclinderChat(this.getCases(this.chartData, value), am4core.color("#DF3520"));
         }
     };
     HistoricalInfoComponent.prototype.getCases = function (resp, type) {
@@ -68,9 +78,7 @@ var HistoricalInfoComponent = /** @class */ (function () {
     HistoricalInfoComponent.prototype.getAllCases = function (resp) {
         var result = [];
         if (resp) {
-            // for (const type in resp) {
             for (var key in resp['cases']) {
-                // if (resp.cases.hasOwnProperty(key)) {
                 var obj = {
                     cases: resp['cases'][key],
                     recovered: resp['recovered'][key],
@@ -78,16 +86,13 @@ var HistoricalInfoComponent = /** @class */ (function () {
                     date: key
                 };
                 result.push(obj);
-                // }
-                // }
             }
         }
-        console.log(result);
         return result;
     };
-    HistoricalInfoComponent.prototype.create3DCyclinderChat = function (data) {
+    HistoricalInfoComponent.prototype.create3DCyclinderChat = function (data, color) {
         var chart = am4core.create("countryChart", am4charts.XYChart3D);
-        // ... chart code goes here ...      
+        // ... chart code goes here ... 
         // Create axes
         var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
         categoryAxis.dataFields.category = "date";
@@ -108,12 +113,14 @@ var HistoricalInfoComponent = /** @class */ (function () {
         series.dataFields.valueY = "number";
         series.dataFields.categoryX = "date";
         var columnTemplate = series.columns.template;
-        columnTemplate.adapter.add("fill", function (fill, target) {
-            return chart.colors.getIndex(target.dataItem.index);
-        });
-        columnTemplate.adapter.add("stroke", function (stroke, target) {
-            return chart.colors.getIndex(target.dataItem.index);
-        });
+        columnTemplate.stroke = color;
+        columnTemplate.fill = color;
+        // columnTemplate.adapter.add("fill", function (fill, target) {
+        //   return chart.colors.getIndex(target.dataItem.index);
+        // })
+        // columnTemplate.adapter.add("stroke", function (stroke, target) {
+        //   return chart.colors.getIndex(target.dataItem.index);
+        // })
         var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
         dateAxis.renderer.grid.template.location = 0;
         series.tooltipText = "{valueY.value}";
@@ -138,12 +145,11 @@ var HistoricalInfoComponent = /** @class */ (function () {
         };
         // dateAxis.tooltipDateFormat = "HH:mm, d MMMM";
         var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-        new am4charts.SerialChart;
         valueAxis.tooltip.disabled = true;
         valueAxis.title.text = "Count";
-        this.createAxisAndSeries(chart, 'cases');
-        this.createAxisAndSeries(chart, 'recovered');
-        this.createAxisAndSeries(chart, 'deaths');
+        this.createAxisAndSeries(chart, 'cases', '#232555');
+        this.createAxisAndSeries(chart, 'recovered', '#22dc22');
+        this.createAxisAndSeries(chart, 'deaths', '#DF3520');
         // Add legend
         chart.legend = new am4charts.Legend();
         // Add cursor
@@ -152,15 +158,14 @@ var HistoricalInfoComponent = /** @class */ (function () {
         dateAxis.keepSelection = true;
         this.chart = chart;
     };
-    HistoricalInfoComponent.prototype.createAxisAndSeries = function (chart, field) {
+    HistoricalInfoComponent.prototype.createAxisAndSeries = function (chart, field, strokeColor) {
         var series = chart.series.push(new am4charts.LineSeries());
         series.dataFields.valueY = field;
         series.dataFields.dateX = "date";
         series.strokeWidth = 2;
         series.name = field;
+        series.stroke = strokeColor;
         series.tooltipText = field + ": [bold]{valueY}[/]";
-        // series.tensionX = 0.8;
-        // series.showOnInit = true;
         chart.cursor = new am4charts.XYCursor();
         chart.cursor.lineY.opacity = 0;
         chart.scrollbarX = new am4charts.XYChartScrollbar();

@@ -26,7 +26,9 @@ var CountryComponent = /** @class */ (function () {
         // this.dataSource = new CountryDataSource();
         // this.dataSource.data = this.countryWiseData;
         this.searchCountry.valueChanges.pipe(operators_1.debounceTime(1000)).subscribe(function (value) {
-            var data = _this.countryWiseData.filter(function (item) { return item.country.includes(value); });
+            var data = _this.countryWiseData.filter(function (item) {
+                return item.country.toString().includes(value);
+            });
             var countryDataSource = new country_datasource_1.CountryDataSource(data);
             countryDataSource.paginator = _this.paginator;
             countryDataSource.sort = _this.sort;

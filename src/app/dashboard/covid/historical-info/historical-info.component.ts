@@ -28,16 +28,7 @@ export class HistoricalInfoComponent implements OnInit {
         const data = this.getCases(this.chartData, value);
         this.createAreaChart(data);
       } else {
-        this.chart.dispose();
-        // if (this.caseType.value === 'recovered') {
-        //   am4core.useTheme(this.am4themes_myTheme_green);
-        // } else if (this.caseType.value === 'cases') {
-        //   am4core.useTheme(this.am4themes_myTheme_blue);
-        // } else {
-        //   am4core.useTheme(this.am4themes_myTheme_red);
-        // }
-        const data = this.getCases(this.chartData, value);
-        this.create3DCyclinderChat(this.getCases(this.chartData, value))
+        this.callCreate3DCyclinderChat(value);
       }
     });
   }
@@ -53,19 +44,23 @@ export class HistoricalInfoComponent implements OnInit {
       this.chart.dispose();
 
     if (this.showAreaChart) {
-      // const data = this.getCases(this.chartData, this.caseType.value);
       const data = this.getAllCases(this.chartData);
       this.createAreaChart(data);
     } else {
-      // if (this.caseType.value === 'recovered') {
-      //   am4core.useTheme(this.am4themes_myTheme_green);
-      // } else if (this.caseType.value === 'cases') {
-      //   am4core.useTheme(this.am4themes_myTheme_blue);
-      // } else {
-      //   am4core.useTheme(this.am4themes_myTheme_red);
-      // }
-      const data = this.getCases(this.chartData, this.caseType.value);
-      this.create3DCyclinderChat(data);
+      this.callCreate3DCyclinderChat(this.caseType.value);
+    }
+  }
+
+  callCreate3DCyclinderChat(value) {
+    if (this.chart)
+      this.chart.dispose();
+      
+    if (this.caseType.value === 'recovered') {
+      this.create3DCyclinderChat(this.getCases(this.chartData, value), am4core.color("#22dc22"));
+    } else if (this.caseType.value === 'cases') {
+      this.create3DCyclinderChat(this.getCases(this.chartData, value), am4core.color("#232555"));
+    } else if (this.caseType.value === 'deaths') {
+      this.create3DCyclinderChat(this.getCases(this.chartData, value), am4core.color("#DF3520"));
     }
   }
 
@@ -100,7 +95,7 @@ export class HistoricalInfoComponent implements OnInit {
     return result;
   }
 
-  create3DCyclinderChat(data) {
+  create3DCyclinderChat(data, color) {
 
     let chart = am4core.create("countryChart", am4charts.XYChart3D);
     // ... chart code goes here ... 
@@ -129,13 +124,15 @@ export class HistoricalInfoComponent implements OnInit {
     series.dataFields.categoryX = "date";
 
     let columnTemplate = series.columns.template;
-    columnTemplate.adapter.add("fill", function (fill, target) {
-      return chart.colors.getIndex(target.dataItem.index);
-    })
+    columnTemplate.stroke = color;
+    columnTemplate.fill = color;
+    // columnTemplate.adapter.add("fill", function (fill, target) {
+    //   return chart.colors.getIndex(target.dataItem.index);
+    // })
 
-    columnTemplate.adapter.add("stroke", function (stroke, target) {
-      return chart.colors.getIndex(target.dataItem.index);
-    })
+    // columnTemplate.adapter.add("stroke", function (stroke, target) {
+    //   return chart.colors.getIndex(target.dataItem.index);
+    // })
 
     let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
     dateAxis.renderer.grid.template.location = 0;
@@ -149,37 +146,6 @@ export class HistoricalInfoComponent implements OnInit {
     // .. chart code end here ...    
 
     this.chart = chart;
-  }
-
-  am4themes_myTheme_green(target) {
-    if (target instanceof am4core.ColorSet) {
-      target.list = [
-        am4core.color("#22dc22")
-      ];
-    }
-  }
-  am4themes_myTheme_blue(target) {
-    if (target instanceof am4core.ColorSet) {
-      target.list = [
-        am4core.color("#232555")
-      ];
-    }
-  }
-  am4themes_myTheme_red(target) {
-    if (target instanceof am4core.ColorSet) {
-      target.list = [
-        am4core.color("#DF3520")
-      ];
-    }
-  }
-  am4themes_myTheme_lineChart(target) {
-    if (target instanceof am4core.ColorSet) {
-      target.list = [
-        am4core.color("#232555"),
-        am4core.color("#DF3520"),
-        am4core.color("#22dc22"),
-      ];
-    }
   }
 
   createAreaChart(data) {

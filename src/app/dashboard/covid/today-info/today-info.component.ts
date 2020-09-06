@@ -69,7 +69,7 @@ export class TodayInfoComponent implements OnInit, OnChanges {
         number: this.currentDayChartData['todayDeaths']
       }
     ];
-    // am4core.useTheme(this.am4themes_myTheme_lineChart);
+    am4core.useTheme(this.am4themes_myTheme_lineChart);
     let chart = am4core.create("currentDayChart", am4charts.PieChart);
     let total = 0;
     chart.data = data;
